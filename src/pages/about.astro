@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css'
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
 
 const pageTitle = "关于我"
 
@@ -42,9 +44,7 @@ const textCase = "uppercase";
 </head>
 <body>
 
-<a href="/">首页</a>
-<a href="/about">关于</a>
-<a href="/blog/">博客</a>
+<Navigation />
 
 <h1>{pageTitle}</h1>
 <h2>....和我的新Astro网站！</h2>
@@ -67,5 +67,6 @@ const textCase = "uppercase";
 <ul>
     {skills.map((skill) => <li class="skill">{skill}</li>)}
 </ul>
+<Footer />
 </body>
 </html>
