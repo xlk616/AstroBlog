@@ -1,5 +1,24 @@
 ---
+import '../styles/global.css'
 
+const pageTitle = "关于我"
+
+const identity = {
+    name : "杏二",
+    country : "中国",
+    occupation : "自由工作者",
+    hobbies : ["摄影","骑行","睡觉"]
+}
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "navy";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 
 <html lang="en">
@@ -8,7 +27,18 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>{pageTitle}</title>
+    <style define:vars={{skillColor,fontWeight,textCase}}>
+        h1 {
+            color: purple;
+            font-size: 4rem;
+        }
+        .skill {
+            color: var(--skillColor);
+            font-weight: var(--fontWeight);
+            text-transform: var(--textCase);
+        }
+    </style>
 </head>
 <body>
 
@@ -16,10 +46,26 @@
 <a href="/about">关于</a>
 <a href="/blog/">博客</a>
 
-<h1>关于我</h1>
+<h1>{pageTitle}</h1>
 <h2>....和我的新Astro网站！</h2>
 
 <p>我正在学习Astro的入门教程，这是我建立的第一个页面</p>
 <p>随着我完成更多的教程，站点将更新更多内容！</p>
+{happy && <p>我很高兴学习Astro</p>}
+{finished && <p>我学习的很快</p>}
+{goal === 3 ? <p>我预计3天完成学习</p> : <p>我不知道什么时候完成学习</p>}
+
+<p>以下是关于我的几个事实：</p>
+<ul>
+    <li>我的名字是{identity.name}.</li>
+    <li>我住在{identity.country}。我的职业是{identity.occupation}。</li>
+    {identity.hobbies.length >= 2 &&
+            <li>我的两个习惯：{identity.hobbies[0]}和{identity.hobbies[1]}</li>
+    }
+</ul>
+<p>我的技能是：</p>
+<ul>
+    {skills.map((skill) => <li class="skill">{skill}</li>)}
+</ul>
 </body>
 </html>
